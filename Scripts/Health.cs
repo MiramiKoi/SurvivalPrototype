@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private int maxHealth;
     [field: SerializeField] public int CurrentHealth {get; private set;}
+
+    private void Awake()
+    {
+        CurrentHealth = maxHealth;
+    }
     
     public void TakeDamage(int damage)
     {
@@ -10,7 +16,12 @@ public class Health : MonoBehaviour
         
         if (CurrentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        gameObject.SetActive(false);
     }
 }
